@@ -1,30 +1,61 @@
-ActionController::Routing::Routes.draw do |map|
-  # The priority is based upon order of creation: first created -> highest priority.
+Fonr::Application.routes.draw do |map|
 
-  map.root :controller => "home"
+  root :to => "home#index"
 
-  map.helper '/helpers/:id', :controller => 'helper', :action => 'helper'
-  map.user_method '/user/:action', :controller => 'user'
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
 
-  map.debug_splat '/debug-splat', :controller => 'home', :action => 'debug_splat'
+  # Sample of regular route:
+  #   match 'products/:id' => 'catalog#view'
+  # Keep in mind you can assign values other than :controller and :action
 
+  # Sample of named route:
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  # This route can be invoked with purchase_url(:id => product.id)
 
-  map.fb_init_options '/fb-init-options/:action', :controller => 'fb_init_options'
+  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
 
-  map.with_options :controller => 'connect' do |r|
-    r.connection_required '/connect', :action => 'connection_required'
-    r.logout '/connect/logout', :action => 'logout'
-    r.login '/connect/login', :action => 'login'
-    r.uninstall '/connect/uninstall', :action => 'uninstall'
-    r.publish_user_actions '/connect/publish-user-actions', :action => 'publish_user_actions'
-    r.invite_friends '/connect/invite-friends', :action => 'invite_friends'
-    r.detecting_connect_status '/connect/detecting-connect-status', :action => 'detecting_connect_status'
-  end
+  # Sample resource route with options:
+  #   resources :products do
+  #     member do
+  #       get :short
+  #       post :toggle
+  #     end
+  #
+  #     collection do
+  #       get :sold
+  #     end
+  #   end
 
+  # Sample resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
 
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # Sample resource route with more complex sub-resources
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get :recent, :on => :collection
+  #     end
+  #   end
+
+  # Sample resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => "welcome#index"
+
+  # See how all your routes lay out with "rake routes"
+
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 end
