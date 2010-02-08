@@ -5,4 +5,5 @@ doc/api
 doc/app
 .rsync_cache
 *.swp
-db/*.sqlite*
+db/*.sqlite3
+.bundler
